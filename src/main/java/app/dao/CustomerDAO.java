@@ -18,9 +18,9 @@ public class CustomerDAO implements CrudDAO<Customer, Long>{
     private final CustomerMapper customerMapper;
 
     @Override
-    public void save(Customer customer) {
-        String sql = "INSERT INTO customers (full_name, email, social_security_number) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, customer.getFullName(), customer.getEmail(), customer.getSocialSecurityNumber());
+    public Customer save(Customer customer) {
+        String sql = "INSERT INTO customers (full_name, email, social_security_number) VALUES (?,?,?) returning *";
+        return jdbcTemplate.queryForObject(sql, customerMapper, customer.getFullName(), customer.getEmail(), customer.getSocialSecurityNumber());
     }
 
     @Override

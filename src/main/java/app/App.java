@@ -43,8 +43,8 @@ public class App {
                     System.out.print("SSN: ");
                     String ssn = sc.nextLine();
 
-                    dao.save(new Customer(null, name, email, ssn));
-                    System.out.println("Customer added successfully");
+                    Customer saved = dao.save(new Customer(null, name, email, ssn));
+                    System.out.println("Customer added successfully: " + saved);
                 }
 
                 case 2 -> {
